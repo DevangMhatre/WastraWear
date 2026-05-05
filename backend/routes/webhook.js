@@ -11,7 +11,10 @@ webhookRouter.post("/", (req, res) => {
 
 webhookRouter.post("/lemonsqueezy", async (req, res) => {
   try {
-    const event = JSON.parse(req.body.toString());
+    // const event = JSON.parse(req.body.toString());
+    const event = req.body;
+
+    console.log("Webhook event:", event.meta?.event_name);
 
     if (event.meta.event_name === "order_created") {
       const orderData = event.data.attributes;
